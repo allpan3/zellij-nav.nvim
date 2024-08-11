@@ -19,9 +19,10 @@ local function nav(short_direction, direction, action)
   -- if the window ID didn't change, then we didn't switch
   if cur_winnr == new_winnr then
     vim.fn.system("zellij action " .. action .. " " .. direction)
-    if vim.v.shell_error ~= 0 then
-      error("zellij executable not found in path")
-    end
+    -- if not in a zellij session, this should be normal and not be considered an error
+    -- if vim.v.shell_error ~= 0 then
+    --   error("zellij executable not found in path")
+    -- end
   end
 end
 
